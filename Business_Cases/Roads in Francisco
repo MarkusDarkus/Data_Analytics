@@ -1,0 +1,22 @@
+What is the total length of all the roads in San Francisco?
+
+
+Assumptions:
+
+  1)The questions concerns San Francisco's roads total length at present.
+
+      Length of road = covering a distance equals to it's official stated length
+      Roads are rectangular in shape
+      Breaking down the problem: The answer depends upon below factors:
+
+  2)Total area of San Francisco
+
+      How much land constitute of total area
+      Width of the road
+
+  3)Solving each piece:
+
+      Area of San Francisco= ~50 sq miles
+      How much land constitute of total area = ~30%
+      Width of the road= 40m
+      Consolidating pieces: Land area= .3 * 50 sq miles= 15 sq miles Total length of all roads= 15 sq miles /40= .375 sq miles
