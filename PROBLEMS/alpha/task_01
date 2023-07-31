@@ -1,0 +1,38 @@
+[Тестовое Альфа-банк] Средняя стоимость 5 покупки
+
+Дано
+Дана следующая структура таблиц:
+
+структура таблиц
+
+Задание
+Необходимо вывести среднюю стоимость 5-ой покупки с разбивкой по городам.
+
+Примечание. Если один и тот же человек совершал покупки, но в разное время, то это считаем за разные покупки.
+
+Столбцы в результате
+  *town
+  *avg_price_5th_purchase - столбец с рассчитанной средней стоимостью
+Важно: Обратите внимание, что название столбцов в вашем ответе должно в точности совпадать с условием.
+
+Сортировка
+Важно: Результат должен быть отсортирован по убыванию значений в столбце avg_price_5th_purchase.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+WITH rn AS (
+    SELECT *, ROW_NUMBER() OVER(PARTITION BY c.town, c.id_customer ORDER BY p.created_at, p.id) AS rn
+    FROM purchases p 
+    JOIN skus s 
+    ON p.sku_id = s.id 
+    JOIN customer c 
+    ON p.user_id = c.id_customer 
+), 
+filtered_rn AS (
+    SELECT *
+    FROM rn
+    WHERE rn = 5
+)
+SELECT town, AVG(price) AS avg_price_5th_purchase
+FROM filtered_rn
+GROUP BY town
+ORDER BY avg_price_5th_purchase DESC
